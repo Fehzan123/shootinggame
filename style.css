@@ -1,0 +1,97 @@
+/* style.css */
+body {
+    margin: 0;
+    padding: 0;
+    background: #1e1e2e;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    font-family: Arial, sans-serif;
+}
+
+#game-area {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    background: #333;
+    border: 2px solid white;
+    overflow: hidden;
+}
+
+#shooter {
+    position: absolute;
+    bottom: 80px;
+    left: 50%;
+    width: 50px;
+    height: 20px;
+    background: red;
+    transform: translateX(-60%);
+}
+
+.bullet {
+    position: absolute;
+    width: 5px;
+    height: 15px;
+    background: yellow;
+    border-radius: 2px;
+}
+
+.target {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    background: green;
+    border-radius: 50%;
+    animation: moveTarget 6s linear infinite;
+}
+/* General button styling */
+.button-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    gap: 10px; /* Space between buttons */
+    padding: 20px; /* Optional padding */
+
+top: 85%;
+    background-color: rgba(255, 255, 255, 0);
+    
+  }
+  
+  .button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    border-radius: 50px;
+    cursor: pointer;
+    font-size: 14px;
+    width: 50px;
+    height: 50px;
+  }
+  
+  .button:hover {
+    background-color: #0056b3; /* Optional hover effect */
+  }
+  
+  .left {
+    background-color: #28a745;
+  }
+  
+  .right {
+    background-color: #dc3545;
+  }
+  
+  .fire {
+    background-color: #ffc107;
+  }
+@keyframes moveTarget {
+    from {
+        top: -50px;
+    }
+    to {
+        top: 550px;
+    }
+}
