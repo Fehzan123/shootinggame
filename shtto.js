@@ -72,5 +72,5 @@ setInterval(generateTarget, 2000); // Generate a new target every 2 seconds
 // Bind shoot button
 const shoot = document.getElementById("button-fire");
 shoot.addEventListener("click", fireBullet);
-
+console.log("1");
 
