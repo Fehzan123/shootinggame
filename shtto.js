@@ -45,8 +45,8 @@ function fireBullet() {
 // Shooter moves left
 const left = document.getElementById("button-left");
 const right = document.getElementById("button-right");
-left.addEventListener("click", moveLeft);
-right.addEventListener("click", moveright);
+left.addEventListener("touchstart", moveLeft);
+right.addEventListener("touchstart", moveright);
 function moveLeft() {
     const shooterLeft = shooter.offsetLeft;
     if (shooterLeft > 0) {
@@ -72,3 +72,5 @@ setInterval(generateTarget, 2000); // Generate a new target every 2 seconds
 // Bind shoot button
 const shoot = document.getElementById("button-fire");
 shoot.addEventListener("click", fireBullet);
+
+
