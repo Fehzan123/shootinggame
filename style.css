@@ -37,11 +37,14 @@ body {
   position: absolute;
   bottom: 10px;
   left: 50%;
-  width: 50px;
-  height: 50px;
-  background-color: red;
+  width: 100px;
+  height: 100px;
+  
+ background-image: url("./rocket.png");
   transform: translateX(-50%);
   border-radius: 5px;
+  background-size: cover; /* Ensures the image covers the entire area */
+  background-position: center;
 }
 
 /* Button Container */
@@ -84,6 +87,43 @@ body {
   height: 15px;
   background: yellow;
   border-radius: 2px;
+}
+body {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+  overflow: hidden;
+}
+.upbox {
+  width: 100px; /* Set a specific width */
+  height: 100px; /* Set a specific height */
+  background-color: lightgray; /* Add a background for visibility */
+  position: relative; /* Establish a positioning context */
+  overflow: hidden; /* Ensure child elements cannot overflow */
+  margin: 20px auto; /* Center parent container */
+  border: 2px solid black; /* Optional: Border for clarity */
+border-radius: 50%;
+}
+
+.box {
+  width: 50px; /* Width of the circular box */
+  height: 50px; /* Height of the circular box */
+  background-color: blue; /* Box color */
+  border-radius: 50%; /* Make it circular */
+  position: absolute; /* Positioning for movement */
+  top: 50%; /* Initial position */
+  left: 50%; /* Initial position */
+  transition: all 0.3s ease; /* Smooth transition when moving */
+}
+
+
+
+.box:active {
+  cursor: grabbing;
 }
 
 @keyframes moveTarget {

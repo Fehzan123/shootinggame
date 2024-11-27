@@ -50,12 +50,12 @@ function moveBullets() {
 function generateTarget() {
     const target = document.createElement("div");
     target.classList.add("target");
-    target.style.left = Math.random() * (gameArea.offsetWidth - 100) + "px";
+    target.style.left = Math.random() * (gameArea.offsetWidth - 50) + "px";
     gameArea.appendChild(target);
     targets.push(target);
 
     setTimeout(() => {
-        target.remove();
+        target.remove();                  
         targets.splice(targets.indexOf(target), 1);
     }, 5000);
 }

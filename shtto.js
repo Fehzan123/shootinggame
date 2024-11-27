@@ -45,8 +45,8 @@ function fireBullet() {
 // Shooter moves left
 const left = document.getElementById("button-left");
 const right = document.getElementById("button-right");
-left.addEventListener("touchstart", moveLeft);
-right.addEventListener("touchstart", moveright);
+left.addEventListener("mousedown", moveLeft);
+right.addEventListener("mousedown", moveright);
 function moveLeft() {
     const shooterLeft = shooter.offsetLeft;
     if (shooterLeft > 0) {
