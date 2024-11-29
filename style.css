@@ -20,9 +20,9 @@ body {
 /* Game Area Styling */
 #game-area {
   position: relative;
-  width: 80vw;
+  width: 100vw;
   max-width: 100%;
-  height: 70vh;
+  height: 100vh;
   max-height: 500px;
   background-image: url("./Horizotal.png");
   background-size: cover; /* Ensures the image covers the entire area */
@@ -35,7 +35,7 @@ body {
 /* Shooter Styling */
 #shooter {
   position: absolute;
-  bottom: 10px;
+  bottom: 50px;
   left: 50%;
   width: 100px;
   height: 100px;
@@ -45,6 +45,7 @@ body {
   border-radius: 5px;
   background-size: cover; /* Ensures the image covers the entire area */
   background-position: center;
+  z-index: 1;
 }
 
 /* Button Container */
@@ -55,31 +56,90 @@ body {
   margin-top: 20px;
   margin-left: 20px;
   width: 90%;
-  max-width: 600px;
+  max-width: 300px;
+  border-radius: 50%;
+  position: absolute;
+  top: 80%;
 }
 
 
-/* Button Styles */
+.buttoncontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 15px; /* Adds space between buttons */
+}
+
+.buttoncontainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  gap: 15px; /* Adds space between buttons */
+}
+
 .buttoncontainer div {
-  flex: 1;
-  text-align: center;
-  padding: 10px 20px;
-  margin: 0 5px;
-  background-color: #555;
+  background-color: #5555552c;
   color: white;
-  font-size: 1rem;
-  border-radius: 5px;
+  font-size: 1.5rem;
+  height: 60px;
+  width: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   cursor: pointer;
   user-select: none;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s ease;
+  border-radius: 50%; /* Makes it circular */
+  text-align: center;
+  border: 5px solid #f0f0f0; /* Adds border */
+  font-weight: bold;
+  font-size: 5rem;
 }
+
+.buttoncontainer div:hover {
+  background-color: #77777725; /* Slightly lighter background on hover */
+  border-color: #ddd; /* Changes border color on hover */
+}
+
+/* Left button */
+#button-left::before {
+  
+  content: '◀'; /* Left arrow icon */
+  font-size: 2rem; /* Adjusts the arrow size */
+  font-weight: bold;
+}
+
+/* Right button */
+#button-right::before {
+  content: '▶'; /* Right arrow icon */
+  font-size: 2rem; /* Adjusts the arrow size */
+  font-weight: bold;
+}
+
+/* Fire button */
+#button-fire {
+  font-size: 1rem; /* Smaller text for "Shoot" */
+  line-height: 1.2;
+  padding: 5px;
+}
+
+/* Fire button */
+#button-fire {
+  font-size: 1rem; /* Smaller text for "Shoot" */
+  line-height: 1.2;
+  padding: 5px;
+}
+
 .target {
   position: absolute;
-  width: 50px;
-  height: 50px;
-  background: green;
-  border-radius: 50%;
-  animation: moveTarget 5s linear infinite;
+  width: 100px;
+  height: 100px;
+  background-image: url("./lobstermorph100x100.png");
+
+ animation: movesprite 2s linear infinite;
+  animation: moveTarget 5s linear infinite; /* Optional: animate movement */
 }
 .bullet {
   position: absolute;
@@ -88,16 +148,7 @@ body {
   background: yellow;
   border-radius: 2px;
 }
-body {
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background-color: #f0f0f0;
-  overflow: hidden;
-}
+
 .upbox {
   width: 100px; /* Set a specific width */
   height: 100px; /* Set a specific height */
@@ -129,17 +180,20 @@ border-radius: 50%;
 @keyframes moveTarget {
   from {
       top: -50px;
+     
   }
   to {
       top: 450px;
+     
   }
 }
+
 .buttoncontainer div:hover {
   background-color: #777;
 }
 
 #button-fire {
-  background-color: #ff5722;
+  background-color: #ff562248;
 }
 
 .button.fire:hover {
@@ -155,15 +209,15 @@ border-radius: 50%;
     flex-direction: column;
   }
 #game-area {
-    width: 70vw;
-    height: 60vh;
+    width: 100vw;
+    height: 100vh;
     background-image: url("./verticalbg.png");
     background-size: cover; /* Ensures the image covers the entire area */
     background-position: center;
 }
 
   .buttoncontainer div {
-      padding: 8px 16px;
+      padding: 16px 16px;
       font-size: 0.9rem;
       
   }
@@ -180,3 +234,11 @@ border-radius: 50%;
       padding: 12px;
   }
 }
+.sheet{
+  position: relative;
+  background-image: url("./lobstermorph100x100.png");
+  width: 100px;
+  height: 100px;
+  animation: movesprite 1s linear infinite;
+}
+

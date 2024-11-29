@@ -1,7 +1,8 @@
 const gameArea = document.getElementById("game-area");
 const shooter = document.getElementById("shooter");
 let targets = [];
-let bullets = []; // Array to store bullets
+let bullets = [];
+let score = 0; // Initialize score
 
 // Function to generate a target
 function generateTarget() {
@@ -12,9 +13,12 @@ function generateTarget() {
     gameArea.appendChild(target);
     targets.push(target);
 
+    // Remove the target after 5 seconds
     setTimeout(() => {
-        target.remove();
-        targets.splice(targets.indexOf(target), 1);
+        if (targets.includes(target)) {
+            target.remove();
+            targets.splice(targets.indexOf(target), 1);
+        }
     }, 5000);
 }
 
@@ -22,7 +26,7 @@ function generateTarget() {
 function moveBullets() {
     bullets.forEach((bullet, index) => {
         const bulletBottom = parseInt(bullet.style.bottom.replace("px", ""));
-        if (bulletBottom > 400) {
+        if (bulletBottom > gameArea.offsetHeight) {
             bullet.remove(); // Remove bullet if it goes out of bounds
             bullets.splice(index, 1);
         } else {
@@ -33,44 +37,96 @@ function moveBullets() {
 
 // Fire a bullet
 function fireBullet() {
-    console.log("Fire");
     const bullet = document.createElement("div");
     bullet.classList.add("bullet");
-    bullet.style.left = shooter.offsetLeft + 22 + "px"; // Position bullet at the shooter's position
-    bullet.style.bottom = "30px"; // Start bullet from above the shooter
+    bullet.style.left = shooter.offsetLeft + 22 + "px"; // Center bullet on the shooter
+    bullet.style.bottom = "50px"; // Start bullet above the shooter
     gameArea.appendChild(bullet);
     bullets.push(bullet);
 }
 
-// Shooter moves left
-const left = document.getElementById("button-left");
-const right = document.getElementById("button-right");
-left.addEventListener("mousedown", moveLeft);
-right.addEventListener("mousedown", moveright);
+// Move shooter left
 function moveLeft() {
     const shooterLeft = shooter.offsetLeft;
     if (shooterLeft > 0) {
         shooter.style.left = shooterLeft - 20 + "px";
     }
-  
 }
-function moveright() {
+
+// Move shooter right
+function moveRight() {
     const shooterLeft = shooter.offsetLeft;
-    if (shooterLeft <gameArea.offsetWidth - 50) {
+    if (shooterLeft < gameArea.offsetWidth - 50) {
         shooter.style.left = shooterLeft + 20 + "px";
     }
-  
 }
 
+// Check for collisions between bullets and targets
+function checkCollisions() {
+    bullets.forEach((bullet, bIndex) => {
+        targets.forEach((target, tIndex) => {
+            const bulletRect = bullet.getBoundingClientRect();
+            const targetRect = target.getBoundingClientRect();
 
-// Move bullets periodically
-setInterval(moveBullets, 50); // Update bullets every 50ms
+            if (
+                bulletRect.left < targetRect.right &&
+                bulletRect.right > targetRect.left &&
+                bulletRect.top < targetRect.bottom &&
+                bulletRect.bottom > targetRect.top
+            ) {
+                bullet.remove();
+                bullets.splice(bIndex, 1);
+
+                target.remove();
+                targets.splice(tIndex, 1);
+
+                score += 10; // Increment score
+                console.log("Score:", score);
+            }
+        });
+    });
+}
+
+// Game loop
+function gameLoop() {
+    moveBullets();
+    checkCollisions();
+    requestAnimationFrame(gameLoop);
+}
+function generateTarget() {
+    const target = document.createElement("div");
+    target.classList.add("target");
+
+    // Random position on the game area
+    target.style.left = Math.random() * (gameArea.offsetWidth - 100) + "px";
+    target.style.top = "0px";
+
+    // Randomly select an enemy from the sprite sheet
+    const totalEnemies = 5; // Adjust based on the number of enemies in your sprite sheet
+    const randomEnemy = Math.floor(Math.random() * totalEnemies);
+    const enemyWidth = 100; // Width of each enemy frame in pixels
+
+    // Set the background position to the selected enemy
+    target.style.backgroundPosition = `-${randomEnemy * enemyWidth}px 0px`;
+
+    gameArea.appendChild(target);
+    targets.push(target);
+
+    // Remove target after a set duration
+    setTimeout(() => {
+        if (targets.includes(target)) {
+            target.remove();
+            targets.splice(targets.indexOf(target), 1);
+        }
+    }, 5000);
+}
+// Initialize game
+document.getElementById("button-left").addEventListener("mousedown", moveLeft);
+document.getElementById("button-right").addEventListener("mousedown", moveRight);
+document.getElementById("button-fire").addEventListener("click", fireBullet);
 
 // Generate targets periodically
-setInterval(generateTarget, 2000); // Generate a new target every 2 seconds
+setInterval(generateTarget, 2000);
 
-// Bind shoot button
-const shoot = document.getElementById("button-fire");
-shoot.addEventListener("click", fireBullet);
-console.log("1");
-
+// Start the game loop
+gameLoop();

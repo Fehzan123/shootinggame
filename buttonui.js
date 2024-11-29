@@ -1,6 +1,6 @@
 const box = document.querySelector('.box');
 const upbox = document.querySelector('.upbox');
-
+const shooter = document.getElementById("shooter");
 let isDragging = false;
 let offsetX, offsetY;
 
@@ -39,7 +39,7 @@ document.addEventListener('mousemove', (e) => {
 document.addEventListener('mouseup', (e) => {
     if (isDragging) {
         isDragging = false;
-
+            const shooterLeft = shooter.offsetLeft;
         const rect = upbox.getBoundingClientRect();
         const upboxRadius = rect.width / 2;
 
@@ -47,9 +47,12 @@ document.addEventListener('mouseup', (e) => {
         const mouseX = e.clientX - centerX; // Mouse position relative to parent center
 
         // Log "left" or "right" based on the box's horizontal position
+       
+       
         if (mouseX < 0) {
-            console.log('left');
+            shooter.style.left = shooterLeft + 20 + "px";
         } else {
+            
             console.log('right');
         }
 
