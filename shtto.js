@@ -123,8 +123,28 @@ function generateTarget() {
 // Initialize game
 document.getElementById("button-left").addEventListener("mousedown", moveLeft);
 document.getElementById("button-right").addEventListener("mousedown", moveRight);
+const left = document.getElementById("button-left");
+const right = document.getElementById("button-right");
 
+let leftInterval;
+let rightInterval;
 
+left.addEventListener("touchstart", function(event) {
+    event.preventDefault(); // Prevent default touch behavior (like scrolling)
+    leftInterval = setInterval(moveLeft, 100);
+});
+left.addEventListener("touchend", function(event) {
+    clearInterval(leftInterval);
+});
+
+// Optional: Also handle touch cancel (e.g., if touch is interrupted)
+left.addEventListener("touchcancel", function(event) {
+    clearInterval(leftInterval);
+});
+right.addEventListener("touchstart", function(event) {
+    event.preventDefault(); // Prevent default touch behavior (like scrolling)
+    rightInterval = setInterval(moveRight, 100);
+});
 let fireInterval;
 
 const fireButton = document.getElementById("button-fire");
@@ -132,12 +152,12 @@ const fireButton = document.getElementById("button-fire");
 // For mobile: Start firing bullets when the button is touched
 fireButton.addEventListener("touchstart", function(event) {
     event.preventDefault(); // Prevent default touch behavior (like scrolling)
-    fireInterval = setInterval(fireBullet, 100);
+    rightInterval = setInterval(fireBullet, 100);
 });
 
 // For mobile: Stop firing bullets when the touch ends
 fireButton.addEventListener("touchend", function(event) {
-    clearInterval(fireInterval);
+    clearInterval(rightInterval);
 });
 
 // Optional: Also handle touch cancel (e.g., if touch is interrupted)
