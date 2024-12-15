@@ -39,8 +39,8 @@ function moveBullets() {
 function fireBullet() {
     const bullet = document.createElement("div");
     bullet.classList.add("bullet");
-    bullet.style.left = shooter.offsetLeft + 22 + "px"; // Center bullet on the shooter
-    bullet.style.bottom = "50px"; // Start bullet above the shooter
+    bullet.style.left = shooter.offsetLeft + 2 + "px"; // Center bullet on the shooter
+    bullet.style.bottom = "70px"; // Start bullet above the shooter
     gameArea.appendChild(bullet);
     bullets.push(bullet);
 }
@@ -123,7 +123,20 @@ function generateTarget() {
 // Initialize game
 document.getElementById("button-left").addEventListener("mousedown", moveLeft);
 document.getElementById("button-right").addEventListener("mousedown", moveRight);
-document.getElementById("button-fire").addEventListener("click", fireBullet);
+
+
+let fireInterval;
+
+document.getElementById("button-fire").addEventListener("mouseover", function() {
+    // Start firing bullets every 500ms when hovering over the button
+    fireInterval = setInterval(fireBullet, 100);
+});
+
+document.getElementById("button-fire").addEventListener("mouseleave", function() {
+    // Stop firing bullets when the mouse leaves the button
+    clearInterval(fireInterval);
+});
+
 
 // Generate targets periodically
 setInterval(generateTarget, 2000);

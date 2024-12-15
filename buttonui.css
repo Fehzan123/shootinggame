@@ -11,6 +11,8 @@
     left: 13px;
     top: 68vh;
         z-index: 1;
+        margin: 0;
+        width: 100vw;
 }
 
 .buttoncontainer > div:first-child {
