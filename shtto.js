@@ -146,6 +146,14 @@ right.addEventListener("touchstart", function(event) {
     event.preventDefault(); // Prevent default touch behavior (like scrolling)
     rightInterval = setInterval(moveRight, 100);
 });
+right.addEventListener("touchend", function(event) {
+    clearInterval(rightInterval);
+});
+
+// Optional: Also handle touch cancel (e.g., if touch is interrupted)
+right.addEventListener("touchcancel", function(event) {
+    clearInterval(rightInterval);
+});
 let fireInterval;
 
 const fireButton = document.getElementById("button-fire");
