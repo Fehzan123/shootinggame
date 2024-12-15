@@ -121,8 +121,7 @@ function generateTarget() {
     }, 5000);
 }
 // Initialize game
-document.getElementById("button-left").addEventListener("mousedown", moveLeft);
-document.getElementById("button-right").addEventListener("mousedown", moveRight);
+
 
 const left = document.getElementById("button-left");
 const right = document.getElementById("button-right");
