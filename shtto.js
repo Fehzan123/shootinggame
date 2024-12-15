@@ -123,7 +123,7 @@ function generateTarget() {
 // Initialize game
 document.getElementById("button-left").addEventListener("mousedown", moveLeft);
 document.getElementById("button-right").addEventListener("mousedown", moveRight);
-let a=1;
+
 const left = document.getElementById("button-left");
 const right = document.getElementById("button-right");
 
