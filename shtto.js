@@ -127,13 +127,21 @@ document.getElementById("button-right").addEventListener("mousedown", moveRight)
 
 let fireInterval;
 
-document.getElementById("button-fire").addEventListener("mouseover", function() {
-    // Start firing bullets every 500ms when hovering over the button
+const fireButton = document.getElementById("button-fire");
+
+// For mobile: Start firing bullets when the button is touched
+fireButton.addEventListener("touchstart", function(event) {
+    event.preventDefault(); // Prevent default touch behavior (like scrolling)
     fireInterval = setInterval(fireBullet, 100);
 });
 
-document.getElementById("button-fire").addEventListener("mouseleave", function() {
-    // Stop firing bullets when the mouse leaves the button
+// For mobile: Stop firing bullets when the touch ends
+fireButton.addEventListener("touchend", function(event) {
+    clearInterval(fireInterval);
+});
+
+// Optional: Also handle touch cancel (e.g., if touch is interrupted)
+fireButton.addEventListener("touchcancel", function(event) {
     clearInterval(fireInterval);
 });
 
