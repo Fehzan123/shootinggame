@@ -160,12 +160,12 @@ const fireButton = document.getElementById("button-fire");
 // For mobile: Start firing bullets when the button is touched
 fireButton.addEventListener("touchstart", function(event) {
     event.preventDefault(); // Prevent default touch behavior (like scrolling)
-    rightInterval = setInterval(fireBullet, 100);
+    fireInterval = setInterval(fireBullet, 100);
 });
 
 // For mobile: Stop firing bullets when the touch ends
 fireButton.addEventListener("touchend", function(event) {
-    clearInterval(rightInterval);
+    clearInterval(fireInterval);
 });
 
 // Optional: Also handle touch cancel (e.g., if touch is interrupted)
