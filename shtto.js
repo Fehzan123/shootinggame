@@ -153,25 +153,39 @@ right.addEventListener("touchend", function(event) {
 right.addEventListener("touchcancel", function(event) {
     clearInterval(rightInterval);
 });
+// Declare fireInterval in the global scope
 let fireInterval;
 
+// Select the fire button
 const fireButton = document.getElementById("button-fire");
 
-// For mobile: Start firing bullets when the button is touched
+// Start firing bullets when the button is touched
 fireButton.addEventListener("touchstart", function(event) {
-// Prevent default touch behavior (like scrolling)
-    fireInterval = setInterval(fireBullet, 300);
+    // Prevent default touch behavior (like scrolling)
+    event.preventDefault();
+
+    // Start firing bullets if not already firing
+    if (!fireInterval) {
+        fireInterval = setInterval(fireBullet, 300);
+    }
 });
 
-// For mobile: Stop firing bullets when the touch ends
+// Stop firing bullets when the touch ends
 fireButton.addEventListener("touchend", function(event) {
+    // Clear the firing interval
     clearInterval(fireInterval);
+    fireInterval = null; // Reset the interval variable
 });
 
-// Optional: Also handle touch cancel (e.g., if touch is interrupted)
+// Handle touch cancel (e.g., if touch is interrupted)
 fireButton.addEventListener("touchcancel", function(event) {
     clearInterval(fireInterval);
+    fireInterval = null; // Reset the interval variable
 });
+
+// Function to simulate firing bullets
+
+
 
 
 // Generate targets periodically
